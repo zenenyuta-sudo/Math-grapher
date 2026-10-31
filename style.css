@@ -222,3 +222,18 @@ select,input[type=text],.ei{border-radius:12px}
 .btn:active,.mini:active,.fab button:active{transform:scale(.96);filter:brightness(1.2)}
 #scr-calc .kpanel.on{animation:equationReveal .24s ease both}
 @media(prefers-reduced-motion:reduce){.scr.on,.scr.fill.on,.scr.on .scard,.drawer.on button,#gstage.graph-refresh,#g3stage.graph-refresh,.eqrow,.hm-feature,.hm-tool,.hm-formula,.hm-learning-row button{animation:none!important;transition:none!important;transform:none!important;filter:none!important}}
+
+
+/* Install app control in Settings */
+.install-card .install-action{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.55rem;
+  min-height:42px;
+  padding:.55rem 1rem;
+  font-weight:700;
+}
+.install-card .install-action span{font-size:1.2rem;line-height:1}
+.install-card .install-help{margin:.65rem 0 .1rem;line-height:1.8}
+.install-card .install-action[hidden]{display:none !important}
