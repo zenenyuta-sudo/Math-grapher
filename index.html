@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<title>Math Grapher</title>
+<meta name="theme-color" content="#1c1c1e">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Math Grapher">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="gg" id="gg">
+  <div class="ggbar">
+    <button id="gg-menu" class="bb" aria-label="Menu">☰</button>
+    
+    <b id="gg-title">Calculator</b>
+    <div id="mid2" class="seg3" hidden><button id="m-graph" class="on" title="Graph">∿</button><button id="m-tools" title="Tools">△</button><button id="m-inter" title="Intersections">✕</button></div>
+    <div id="mid3" class="seg3" hidden><button data-m3="points" title="Points">⁚</button><button data-m3="wire" title="Wireframe">▱</button><button data-m3="surf" class="on" title="Surface">▰</button><button data-m3="mix" title="Surface + edges">▦</button></div>
+    <span class="grow"></span>
+    <button id="gg-list" class="bb" hidden aria-label="Graphs list">☰</button><button id="gg-share" class="bb" aria-label="Share">⇪</button>
+    <span class="kflag" title="Kurdistan" role="img" aria-label="Kurdistan flag"><svg viewBox="0 0 60 60" width="100%" height="100%" aria-hidden="true"><rect width="60" height="20" fill="#ed2024"/><rect y="20" width="60" height="20" fill="#fff"/><rect y="40" width="60" height="20" fill="#278e43"/><path d="M30.00 22.70L31.71 18.63L32.15 23.02ZM32.15 23.02L34.99 19.64L34.11 23.97ZM34.11 23.97L37.82 21.57L35.71 25.45ZM35.71 25.45L39.96 24.25L36.80 27.33ZM36.80 27.33L41.21 27.44L37.28 29.45ZM37.28 29.45L41.47 30.86L37.12 31.62ZM37.12 31.62L40.71 34.20L36.32 33.65ZM36.32 33.65L38.99 37.17L34.97 35.35ZM34.97 35.35L36.48 39.50L33.17 36.58ZM33.17 36.58L33.39 40.99L31.09 37.22ZM31.09 37.22L30.00 41.50L28.91 37.22ZM28.91 37.22L26.61 40.99L26.83 36.58ZM26.83 36.58L23.52 39.50L25.03 35.35ZM25.03 35.35L21.01 37.17L23.68 33.65ZM23.68 33.65L19.29 34.20L22.88 31.62ZM22.88 31.62L18.53 30.86L22.72 29.45ZM22.72 29.45L18.79 27.44L23.20 27.33ZM23.20 27.33L20.04 24.25L24.29 25.45ZM24.29 25.45L22.18 21.57L25.89 23.97ZM25.89 23.97L25.01 19.64L27.85 23.02ZM27.85 23.02L28.29 18.63L30.00 22.70Z" fill="#fbd20e"/><circle cx="30" cy="30" r="7.6" fill="#fbd20e"/></svg></span>
+  </div>
+  <div id="gg-toast" class="toast"></div>
+  <div id="scrim" class="scrim"></div>
+  <nav id="drawer" class="drawer" aria-label="Menu">
+    <div class="dr-h"><img src="assets/icon-192.png" alt="" width="44" height="44"><div><b>Math Grapher</b><small>Calculator · 2D · 3D · Solver</small></div></div>
+    <button data-scr="home"><i>⌂</i><span>Home<small>سەرەکی</small></span></button>
+    <button data-scr="calc"><i>▦</i><span>Calculator<small>ژمێرەر</small></span></button>
+    <button data-scr="g2"><i>⌁</i><span>2D grapher<small>گرافی ٢ ڕەهەند</small></span></button>
+    <button data-scr="g3"><i>◎</i><span>3D grapher<small>گرافی ٣ ڕەهەند</small></span></button>
+    <button data-scr="solver"><i>{ }</i><span>MathSolver<small>چارەسەرکەری هاوکێشە</small></span></button>
+    <button data-scr="set"><i>⛭</i><span>Settings<small>ڕێکخستن</small></span></button>
+    <button data-scr="help"><i>?</i><span>Help<small>یارمەتی</small></span></button>
+    <button data-scr="about"><i>ⓘ</i><span>About<small>دەربارە</small></span></button>
+  </nav>
+
+
+  <div class="scr" id="scr-home"><div class="homebox">
+    <div class="hero">
+      <img src="assets/icon-192.png" alt="" width="84" height="84">
+      <div><div class="hi">Welcome 👋</div><h2>Math Grapher</h2><div class="tag">Calculate · Graph · Solve</div></div>
+    </div>
+    <div class="hbadges"><span id="hm-off" class="hb">…</span><button id="hm-install" class="hb inst" hidden>Install app</button></div>
+    <h4 class="hh">Quick access</h4>
+    <div class="hgrid">
+      <button data-go="calc"><i>▦</i><b>Calculator</b><small>Scientific calculator</small></button>
+      <button data-go="g2"><i>⌁</i><b>2D grapher</b><small>Plot functions</small></button>
+      <button data-go="g3"><i>◎</i><b>3D grapher</b><small>Surfaces in 3D</small></button>
+      <button data-go="solver"><i>{ }</i><b>MathSolver</b><small>Step by step</small></button>
+      <button data-go="set"><i>⛭</i><b>Settings</b><small>Colors, language, effects</small></button>
+      <button data-go="help"><i>?</i><b>Help</b><small>How to use</small></button>
+    </div>
+    <h4 class="hh">Try an example</h4>
+    <div class="hex"><button data-ex="sin(x)">sin(x)</button><button data-ex="x^2-4">x²−4</button><button data-ex="cos(x)*x">x·cos(x)</button><button data-ex="1/x">1/x</button><button data-ex="sqrt(x)">√x</button></div>
+    <section class="hm-section">
+      <div class="hm-head"><div><h3>Explore Math Grapher</h3><p>هەموو ئامرازەکانت لە یەک شوێندا</p></div><span class="hm-mark">✦</span></div>
+      <label class="hm-search"><span>⌕</span><input id="hm-search" type="search" placeholder="Search tools, formulas, topics…" autocomplete="off"><button id="hm-search-clear" type="button" aria-label="Clear search">×</button></label>
+      <div class="hm-feature-grid">
+        <button class="hm-feature blue" data-go="g2"><i>⌁</i><b>Function Plotter</b><small>گرافی فەنکشنەکان و شیکردنەوەیان</small><span>Open 2D →</span></button>
+        <button class="hm-feature purple" data-go="g3"><i>◈</i><b>3D Surface Lab</b><small>ڕووی سێ ڕەهەندی و هاوکێشەکان</small><span>Explore 3D →</span></button>
+        <button class="hm-feature green" data-go="calc"><i>▦</i><b>Scientific Calculator</b><small>ژمێرەری زانستی و فەنکشنەکان</small><span>Calculate →</span></button>
+        <button class="hm-feature orange" data-go="solver"><i>∑</i><b>Equation Solver</b><small>چارەسەری هاوکێشە بە هەنگاو</small><span>Solve →</span></button>
+      </div>
+    </section>
+
+    <section class="hm-section">
+      <div class="hm-head"><div><h3>Math Toolbox</h3><p>ئامرازە گرنگەکان بۆ کارە ماتماتیکییەکان</p></div><span class="hm-mark">⚙</span></div>
+      <div class="hm-tool-grid">
+        <button class="hm-tool" data-go="solver"><span>ƒ(x)</span><b>Function analysis</b><small>Roots · Max · Min</small></button>
+        <button class="hm-tool" data-go="g2"><span>dy/dx</span><b>Derivative</b><small>هەڵکشان و دابەزین</small></button>
+        <button class="hm-tool" data-go="g2"><span>∫</span><b>Integral graphs</b><small>ناوچە و ئەنتیگرال</small></button>
+        <button class="hm-tool" data-go="solver"><span> lim </span><b>Limits</b><small>سنووری فەنکشن</small></button>
+        <button class="hm-tool" data-go="calc"><span>π</span><b>Constants</b><small>π · e · √2</small></button>
+        <button class="hm-tool" data-go="set"><span>⚙</span><b>Graph settings</b><small>ڕەنگ و مەودا و شێوە</small></button>
+      </div>
+    </section>
+
+    <section class="hm-section">
+      <div class="hm-head"><div><h3>Function Library</h3><p>فەنکشنە ئامادەکان — کلیک بکە بۆ کێشانی گراف</p></div><span class="hm-mark">ƒ</span></div>
+      <div class="hm-chip-list">
+        <button data-ex="x^2">Parabola <code>y = x²</code></button>
+        <button data-ex="x^3">Cubic <code>y = x³</code></button>
+        <button data-ex="abs(x)">Absolute <code>y = |x|</code></button>
+        <button data-ex="sqrt(x)">Square root <code>y = √x</code></button>
+        <button data-ex="sin(x)">Sine <code>y = sin(x)</code></button>
+        <button data-ex="cos(x)">Cosine <code>y = cos(x)</code></button>
+        <button data-ex="tan(x)">Tangent <code>y = tan(x)</code></button>
+        <button data-ex="1/x">Reciprocal <code>y = 1/x</code></button>
+        <button data-ex="exp(x)">Exponential <code>y = eˣ</code></button>
+        <button data-ex="log(x)">Logarithm <code>y = log(x)</code></button>
+        <button data-ex="sin(x)*cos(x)">Wave product <code>sin(x)cos(x)</code></button>
+        <button data-ex="x^2-4">Shifted parabola <code>x² − 4</code></button>
+      </div>
+    </section>
+
+    <section class="hm-section">
+      <div class="hm-head"><div><h3>Formula & Learning Center</h3><p>فۆرمولا و بابەتە سەرەکییەکان</p></div><span class="hm-mark">∑</span></div>
+      <div class="hm-formula-grid">
+        <article class="hm-formula"><small>Quadratic formula</small><b dir="ltr">x = (−b ± √(b²−4ac)) / 2a</b><button data-go="solver">Solve an equation →</button></article>
+        <article class="hm-formula"><small>Circle equation</small><b dir="ltr">(x − h)² + (y − k)² = r²</b><button data-ex="sqrt(25-x^2)">Explore circle →</button></article>
+        <article class="hm-formula"><small>Pythagorean theorem</small><b dir="ltr">a² + b² = c²</b><button data-go="solver">Open solver →</button></article>
+        <article class="hm-formula"><small>Exponential function</small><b dir="ltr">f(x) = a · bˣ</b><button data-ex="2^x">Plot function →</button></article>
+      </div>
+      <div class="hm-learning-row"><button data-go="help"><span>📘</span><b>Learn how to use the app</b><small>ڕێنمایی بەکارهێنانی ئامرازەکان</small><i>→</i></button><button data-go="about"><span>ⓘ</span><b>About this project</b><small>زانیاری دەربارەی ئەپەکە</small><i>→</i></button></div>
+    </section>
+
+    <section class="hm-section hm-bottom">
+      <div class="hm-head"><div><h3>Ready for your next problem?</h3><p>پرسیارەکەت هەڵبژێرە و دەست بە کار بکە</p></div></div>
+      <div class="hm-cta"><button data-go="calc">Open Calculator</button><button data-go="g2">Start Graphing</button><button data-go="solver">Solve Problem</button></div>
+    </section>
+    <a class="htg" href="https://t.me/App5world" target="_blank" rel="noopener"><i>✈</i><span><b>Our Telegram channel</b><small>@App5world</small></span></a>
+    <div class="hdev">Developer: Safen Sartip Ismail</div>
+  </div></div>
+
+  <div class="scr fill" id="scr-calc">
+    <div class="calcwrap">
+      <div id="cn-pad" class="notepad"></div>
+      <div class="cnin"><div id="cn-prev" class="cnprev"></div><div class="inrow"><input id="cn-input" dir="ltr" inputmode="none" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="2+3*4" aria-label="دەربڕینی ماتماتیکی"><button id="cn-kb" class="ib" title="Device keyboard on / off" aria-label="Device keyboard">Aa</button><button id="cn-gr" class="ib gr" title="Send to 2D graph">Graph</button></div></div>
+      <div id="cn-func" class="kpanel"></div><div id="cn-const" class="kpanel"></div>
+      <div id="cn-keys" class="keys6"></div>
+    </div>
+  </div>
+
+  <div class="scr fill" id="scr-g2"><div class="stagewrap">
+    <div id="gstage"><canvas id="gcanvas" aria-label="2D graph"></canvas></div>
+    <canvas id="acanvas" aria-label="Notes on graph"></canvas>
+    <div id="atool" class="atool" hidden><span class="dots" id="a-dots"></span><input type="color" id="a-col" value="#ffd479" aria-label="Color"><button id="a-undo">Undo</button><button id="a-done">Done</button><button id="a-more">More</button><span class="adv"><button data-at="hand">Move</button><button data-at="pen" class="on">Pen</button><button data-at="text">Text</button><button data-at="erase">Erase</button><input type="range" id="a-w" min="1" max="12" value="3" aria-label="Width"><button id="a-dr" title="Write domain and range of the selected graph on the screen">Domain/Range</button><button id="a-clear">Clear</button></span></div>
+    <div class="hud"><div id="g-read" class="math"></div><div id="g-sel" class="gsel"></div></div><div id="g-domain-card" class="domain-card" aria-live="polite"><b>مەودای گراف (2D)</b><span>گرافێک زیاد بکە بۆ پیشاندانی مەودا</span></div>
+    <div class="fab"><button id="z-note" title="Write on graph">✎</button><button id="z-in" title="Zoom in">＋</button><button id="z-out" title="Zoom out">－</button><button id="z-reset" title="Reset">⟲</button></div>
+    <div class="sheet" id="sh-list">
+      <div class="sh-h"><b>Graphs list</b><button class="mini" data-close>✕</button></div>
+      <div id="eq-list"></div><div id="pick2" class="picker"></div>
+      <h4>Parameters (sliders)</h4><div id="params"></div>
+      <div class="row"><button id="eq-clear" class="btn sm">Clear all</button></div>
+      <p class="muted small">پارامیتەر: هەر پیتێکی تر جگە لە x,y,t,θ (نموونە <span class="math">a*x^2+b*x+c</span>) سلایدەری بۆ دروست دەبێت.</p>
+    </div>
+    <div class="sheet" id="sh-tools">
+      <div class="sh-h"><b>Tools — ئامرازەکان</b><button class="mini" data-close>✕</button></div>
+      <label class="lbl">Graph<select id="t-eq" dir="ltr"></select></label>
+      <div class="acts"><button class="btn" id="t-roots">Roots (x-int)</button><button class="btn" id="t-yint">y-intercept</button><button class="btn" id="t-ext">Max / Min</button><button class="btn" id="t-inter">Intersections</button><button class="btn" id="t-dom">Domain &amp; Range</button><button class="btn sm" id="t-clear">Clear marks</button></div>
+      <div class="row"><label class="chk"><input type="checkbox" id="t-deriv"> Derivative f′(x)</label><label class="chk"><input type="checkbox" id="t-tan"> Tangent line</label></div>
+      <div class="row"><label class="muted">x₀ =</label><input id="t-x0" dir="ltr" class="tiny" value="1"><button class="btn" id="t-val">f(x₀)</button><span class="muted small">یان لەسەر گراف کلیک بکە</span></div>
+      <div id="t-out" class="cout"></div>
+      <p class="muted small">⚠ «ڕاستەوخۆ/ڕەمزی» = بە فۆرمولا (پۆلی ١ و ٢). «نزیکەیی» = شیوازی ژمارەیی لە ماوەی بینراودا. ئامرازەکان بۆ y(x) ـن.</p>
+    </div>
+  </div></div>
+
+  <div class="scr fill" id="scr-g3"><div class="stagewrap">
+    <div id="g3stage"><canvas id="g3canvas" aria-label="3D graph"></canvas></div>
+    <div id="c3" class="c3"><button id="c3-toggle" class="c3t" title="Controls">⋯</button><div class="c3b"><div class="c3r"><button data-c3="zin" data-rep="1">＋</button><button data-c3="zout" data-rep="1">－</button><button data-c3="up" data-rep="1">▲</button><button data-c3="down" data-rep="1">▼</button><button data-c3="left" data-rep="1">◀</button><button data-c3="right" data-rep="1">▶</button></div><div class="c3r"><button data-c3="reset">Reset</button><button data-c3="auto">Auto</button><button data-c3="top">Top</button><button data-c3="front">Front</button><button data-c3="side">Side</button><button data-c3="iso">Iso</button></div><div class="c3r"><button data-c3="axes">Axes</button><button data-c3="nums">Numbers</button><button data-c3="floor">Floor</button><button data-c3="nminus">Detail −</button><button data-c3="nplus">Detail +</button><button data-c3="rminus">Range −</button><button data-c3="rplus">Range +</button></div></div></div>
+    <div class="hud muted small">Drag = rotate · Wheel / pinch = zoom · Double-click = reset</div><div id="g3-domain-card" class="domain-card" aria-live="polite"><b>مەودای گراف (3D)</b><span>گرافێک زیاد بکە بۆ پیشاندانی مەودا</span></div>
+    <div class="sheet" id="sh3">
+      <div class="sh-h"><b>Graphs list</b><button class="mini" data-close3>✕</button></div>
+      <div id="g3-list"></div><div id="pick3" class="picker"></div>
+      <div class="row"><button id="g3-clear" class="btn sm">Clear all</button></div>
+      <p class="muted small">تەنها دەربڕین بنووسە، نموونە <span class="math">sin(sqrt(x^2+y^2))</span> بۆ z(x,y). بۆ F(x,y,z) نموونە <span class="math">x^2+y^2+z^2=9</span>.</p>
+    </div>
+  </div></div>
+
+  <div class="scr" id="scr-solver"><div class="solverbox">
+    <h3>MathSolver</h3><p class="muted small">هەر هاوکێشەیەک لە هێڵێکدا بنووسە. سیستەمی هێڵی (٢ یان زیاتر گۆڕاو)، سیستەمی نا‌هێڵی، یان هاوکێشەی یەک گۆڕاو.</p>
+    <div id="sv-sym" class="symbar"></div>
+    <div class="sv-keypad" id="sv-keypad" aria-label="Equation keypad">
+      <div class="sv-keyrow"><button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="+">+</button><button data-k="−">−</button><button data-k="⌫" class="sv-special">⌫</button></div>
+      <div class="sv-keyrow"><button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="×">×</button><button data-k="÷">÷</button><button data-k="(">(</button></div>
+      <div class="sv-keyrow"><button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="^">^</button><button data-k=")">)</button><button data-k="=">=</button></div>
+      <div class="sv-keyrow"><button data-k="0">0</button><button data-k=".">.</button><button data-k="π">π</button><button data-k="x">x</button><button data-k="y">y</button><button data-k="z">z</button></div>
+      <div class="sv-keyrow sv-fnrow"><button data-k="sqrt(">√</button><button data-k="sin(">sin</button><button data-k="cos(">cos</button><button data-k="tan(">tan</button><button data-k="log(">log</button><button data-k="ln(">ln</button></div>
+      <div class="sv-keyrow"><button data-k="abs(">abs</button><button data-k="exp(">exp</button><button data-k="e">e</button><button data-k="pi">π</button><button data-k="&#10;">↵ هێڵی نوێ</button><button data-k="CLEAR" class="sv-special">پاککردنەوە</button></div>
+    </div>
+    <textarea id="sv-in" dir="ltr" rows="5" spellcheck="false" placeholder="x+y=1&#10;2x-y=2"></textarea>
+    <div class="row"><button id="sv-solve" class="btn pri">Solve</button><button id="sv-clear" class="btn sm">پاککردنەوە</button><span class="muted small">Ctrl + Enter</span></div>
+    <div class="muted small" style="margin-top:.6rem">نموونە:</div><div id="sv-ex" class="chips2"></div>
+    <div id="sv-out"></div>
+  </div></div>
+
+  <div class="scr" id="scr-set"><div class="solverbox">
+    <h3>Settings — ڕێکخستن</h3>
+    <div class="scard"><h4>Animation</h4>
+      <label class="chk"><input type="checkbox" id="s-anim" checked> Screen animations</label>
+      <div class="muted small">Background effect</div>
+      <select id="s-fx"><option value="none">None</option><option value="particles">Particles</option><option value="stars">Stars</option><option value="waves">Waves</option><option value="aurora">Aurora</option><option value="matrix">Matrix Rain</option><option value="fireflies">Fireflies</option><option value="orbit">Orbit Rings</option><option value="grid">Moving Grid</option></select></div>
+
+    <div class="scard"><h4>Language</h4>
+      <select id="s-lang"></select></div>
+
+    <div class="scard"><h4>Angle mode — گۆشە</h4>
+      <select class="angle-sel"><option value="rad">Radians</option><option value="deg">Degrees</option></select></div>
+
+    <div class="scard"><h4>Appearance — ڕەنگی ئەپەکە</h4>
+      <div id="th-presets" class="chips2"></div>
+      <div class="colgrid">
+        <label>Accent<input type="color" id="th-acc"></label><label>Accent 2<input type="color" id="th-acc2"></label>
+        <label>Background<input type="color" id="th-bg"></label><label>Panels<input type="color" id="th-panel"></label>
+        <label>Top bar<input type="color" id="th-bar"></label><label>Text<input type="color" id="th-tx"></label>
+        <label>Graph background<input type="color" id="s-bg" value="#000000"></label>
+        <label>Grid lines<input type="color" id="s-gridc" value="#7896ff"></label><label>Axes<input type="color" id="s-axisc" value="#c8d7ff"></label>
+        <label>Numbers<input type="color" id="s-txtc" value="#c8d7ff"></label>
+      </div>
+      <div class="row"><button id="th-reset" class="btn sm">Reset colors</button><button id="s-gcreset" class="btn sm">Reset graph colors</button></div>
+    </div>
+
+    <div class="scard"><h4>2D grapher — ماوەی گراف</h4>
+      <div class="muted small">ماوەی خێرا (دەوری سفر):</div>
+      <div id="r-presets" class="chips2"></div>
+      <div class="grid2"><label>X min<input id="s-xmin" type="number" step="any" dir="ltr"></label><label>X max<input id="s-xmax" type="number" step="any" dir="ltr"></label><label>Y min<input id="s-ymin" type="number" step="any" dir="ltr"></label><label>Y max<input id="s-ymax" type="number" step="any" dir="ltr"></label></div>
+      <button id="s-apply" class="btn pri">Apply ranges</button> <button id="s-eq" class="btn sm">Equal scale 1:1</button><div id="s-err" class="warn"></div>
+      <label class="chk"><input type="checkbox" id="s-grid" checked> Grid</label><label class="chk"><input type="checkbox" id="s-axes" checked> Axes</label><label class="chk"><input type="checkbox" id="s-labels" checked> Labels</label>
+      <label class="lbl">Line width <input type="range" id="s-lw" min="1" max="7" step="0.5" value="2.5"></label>
+    </div>
+
+    <div class="scard"><h4>3D grapher</h4>
+      <div class="grid2"><label>Range ±R<input id="s3-r" type="number" step="any" dir="ltr"></label><label>Mesh N (8–80)<input id="s3-n" type="number" dir="ltr"></label></div>
+      <button id="s3-apply" class="btn pri">Apply</button><div id="s3-err" class="warn"></div>
+    </div>
+
+    <div class="scard"><h4>Calculator</h4>
+      <label class="chk"><input type="checkbox" id="s-kb"> بەکارهێنانی کیبۆردی ئامێر (device keyboard)</label>
+      <div class="row"><button id="s-pad" class="btn sm">پاککردنەوەی مێژووی ژمێرەر</button></div>
+    </div>
+
+    <div class="scard"><h4>Data</h4>
+      <div class="row"><button id="s-annot" class="btn sm">Clear graph notes</button><button id="s-all" class="btn sm">Reset everything</button></div>
+    </div>
+  </div></div>
+
+  <div class="scr" id="scr-help"><div class="solverbox helptx">
+    <h3>Help — یارمەتی</h3>
+    <p class="muted">بەشەکان بکەرەوە بۆ خوێندنەوەی ڕێنمایی. دوگمەی <code>☰</code> لای سەرەوە-چەپ هەموو بەشەکانی ئەپەکە دەکاتەوە.</p>
+
+    <details class="hs" open><summary>دەستپێک</summary>
+      <p>Math Grapher پێنج بەشی هەیە: <b>Calculator</b> (ژمێرەر)، <b>2D grapher</b>، <b>3D grapher</b>، <b>MathSolver</b> و <b>Settings</b>. هەموویان بزوێنەرێکی ماتماتیکی هاوبەش بەکاردەهێنن، بۆیە هەمان شێوازی نووسین لە هەموو بەشەکاندا کار دەکات.</p>
+      <p>ئەپەکە بێ ئینتەرنێت کار دەکات. بۆ دامەزراندن لەسەر مۆبایل، لە وێبگەڕەکەت <i>Add to Home Screen</i> هەڵبژێرە.</p>
+    </details>
+
+    <details class="hs"><summary>شێوازی نووسینی دەربڕین</summary>
+      <ul>
+        <li>کۆکردنەوە و لێکردن: <code>+</code> <code>-</code>، لێکدان: <code>*</code> یان <code>×</code>، دابەشکردن: <code>/</code> یان <code>÷</code>، توان: <code>^</code> (نموونە <code>x^2</code>).</li>
+        <li>ڕەگ: <code>sqrt(x)</code> یان <code>√(x)</code>، ڕەگی سێیەم: <code>cbrt(x)</code>.</li>
+        <li>نرخە نەگۆڕەکان: <code>pi</code> یان <code>π</code>، <code>e</code>، <code>inf</code>.</li>
+        <li>فەنکشنەکان: sin cos tan cot sec csc، asin acos atan، sinh cosh tanh، asinh acosh atanh، log (بنەمای ١٠)، log2، ln، exp، abs، floor، ceil، round، sign.</li>
+        <li>فاکتۆریال <code>5!</code>، ڕێژە <code>%</code>، خاڵی ناوەڕاست وەک <code>2x</code> (واتە <code>2*x</code>) پشتگیری دەکرێت.</li>
+        <li>پارەنتێز: <code>( )</code>. کەوانەی <code>[ ]</code> و <code>{ }</code> بە هەمان واتا دەخوێنرێنەوە.</li>
+      </ul>
+    </details>
+
+    <details class="hs"><summary>Calculator — ژمێرەر</summary>
+      <p><b>نووسین:</b> دەتوانیت بە دوگمەکانی ئەپەکە بنووسیت یان بە کیبۆردی ئامێرەکەت. دوگمەی <code>Aa</code> لە تەنیشت خانەی نووسین کیبۆردی ئامێر دەکاتەوە؛ بۆ گەڕانەوە بۆ دوگمەکانی ئەپەکە دووبارە لێی بدە. لە کۆمپیوتەر، بەبێ هیچ دوگمەیەک دەتوانیت راستەوخۆ بنووسیت.</p>
+      <p><b>کورسەر:</b> کلیک لە هەر شوێنێکی دەربڕینەکە بکە بۆ گۆڕینی شوێنی نووسین. دوگمەکانی <code>⇦</code> و <code>⇨</code> کورسەر دەجوڵێنن، <code>Del</code> پیتێک دەسڕێتەوە، <code>C</code> خانەکە پاک دەکاتەوە (ئەگەر بەتاڵ بوو، مێژووەکە).</p>
+      <p><b>دوگمەی Graph:</b> هاوکێشەکەی ناو خانەکە دەنێرێت بۆ گرافی ٢ ڕەهەند، نموونە <code>y=x^2-4</code> یان <code>x^2+y^2=9</code>. ئەگەر بەبێ <code>y=</code> بنووسیت، وەک <code>y=...</code> دادەنرێت.</p>
+      <p><b>2nd:</b> کلیلەکان دەگۆڕێت (sin ← sin⁻¹، log ← 10ˣ ...). <b>func:</b> ئامرازەکانی ئاسانکردن، چارەسەر، لێکدانەوە (d/dx)، ئینتیگڕاڵ، و فەنکشنی زیاتر. <b>const:</b> نرخە نەگۆڕە زانستییەکان.</p>
+      <p><b>فەنکشنی زیاتر:</b> <code>nCr(n,r)</code> بۆ کۆمبینەیشن، <code>nPr(n,r)</code> بۆ پێرمیوتەیشن، <code>gcd(a,b)</code> دابەشکەری هاوبەشی گەورە، <code>lcm(a,b)</code> لێکدراوی هاوبەشی بچووک، <code>mod(a,b)</code> ماوەی دابەشکردن، <code>rand()</code> ژمارەی هەڕەمەکی.</p>
+      <p><b>ئەنجام:</b> <code>ans</code> ئەنجامی پێشوو. کلیک لەسەر هەر ئەنجامێک لەبەری دەگرێتەوە. «هەنگاوەکان» بکەرەوە بۆ بینینی چۆنیەتی چارەسەرکردن. هەر ئەنجامێک نیشان دەدرێت «وردە» یان «نزیکەیی».</p>
+    </details>
+
+    <details class="hs"><summary>2D grapher — گرافی دوو ڕەهەند</summary>
+      <p><b>زیادکردنی گراف:</b> دوگمەی <code>☰</code> (لای ڕاستی سەرەوە) لیستی گرافەکان دەکاتەوە. <i>New graph</i> بکە و جۆر هەڵبژێرە: y(x)، x(y)، r(θ)، x(t),y(t)، F(x,y).</p>
+      <p><b>پارامیتەر:</b> هەر پیتێک جگە لە x، y، t، θ وەک پارامیتەر دادەنرێت و سلایدەری بۆ دروست دەبێت، نموونە <code>a*x^2+b*x+c</code>. ماوەی سلایدەر دەتوانیت بگۆڕیت.</p>
+      <p><b>جووڵە:</b> ڕاکێشان = جووڵاندنی گراف، چەرخی ماوس یان دوو پەنجە = زووم، دوگمەی <code>⟲</code> = گەڕانەوە بۆ دۆخی سەرەتایی.</p>
+      <p><b>ئامرازەکان (<code>△</code>):</b> ڕیشەکان، بڕینی y، گەورەترین/بچووکترین خاڵ، خاڵی بڕین، بوار و مەودا (Domain &amp; Range)، لێکدانەوە f′(x)، هێڵی لیکەوتوو (Tangent)، و بەهای f(x₀). دوگمەی <code>✕</code> راستەوخۆ خاڵی بڕینی نێوان گرافەکان نیشان دەدات.</p>
+      <p><b>نووسین لەسەر گراف (<code>✎</code>):</b> دوگمەی <code>✎</code> تووڵبارێک دەکاتەوە: <i>Move</i> بۆ جووڵاندنی گراف، <i>Pen</i> بۆ ڕەسمکردن، <i>Text</i> بۆ نووسینی تێبینی، <i>Erase</i> بۆ سڕینەوە، ڕەنگ و ئەستووریی قەڵەم، <i>Undo</i> و <i>Clear</i>. نووسینەکان بە هەمان شوێنی گرافەوە دەبەسترێنەوە و لەگەڵ زووم و جووڵاندندا دەجوڵێن. دوگمەی <i>Domain/Range</i> بوار و مەودای ئەو گرافە هەڵبژێردراوە لەسەر شاشە دەنووسێت. وێنەی گرافەکە (دوگمەی ⇪) نووسینەکانیش لەخۆ دەگرێت.</p>
+    </details>
+
+    <details class="hs"><summary>3D grapher — گرافی سێ ڕەهەند</summary>
+      <p><b>٩ جۆر:</b> z(x,y)، x(y,z)، y(x,z)، x/y/z(ρ,φ)، r(θ,φ)، xyz(u,v)، و F(x,y,z)=0. تەنها دەربڕین بنووسە، نموونە <code>sin(sqrt(x^2+y^2))</code>. بۆ F(x,y,z) نموونە <code>x^2+y^2+z^2=9</code>.</p>
+      <p><b>شێوازی پیشاندان (سەرەوە):</b> خاڵ، تۆڕ (Wireframe)، ڕووی پڕ، و ڕوو + هێڵ.</p>
+      <p><b>کۆنتڕۆڵ:</b> ڕاکێشان = سووڕاندن، چەرخ یان دوو پەنجە = زووم، دووجار کلیک = گەڕانەوە. پانێڵی کۆنتڕۆڵی خوارەوە دوگمەی زووم، سووڕاندن بە ئاراستە، بینینی سەرەوە/پێشەوە/لا/Iso، سووڕانی خۆکار (Auto)، پیشاندان/شاردنەوەی تەوەرەکان و ژمارەکان و زەوی (Floor)، زیادکردن/کەمکردنی وردی (Detail)، و گۆڕینی ماوە (Range) هەیە.</p>
+    </details>
+
+    <details class="hs"><summary>MathSolver — چارەسەرکەر</summary>
+      <p>هەر هاوکێشەیەک لە هێڵێکی جیاوازدا بنووسە، ئینجا <i>Solve</i> بکە. دوگمەکانی سەرەوەی خانەکە پیت و هێماکان زیاد دەکەن، و نموونەکان بە یەک کلیک دەچنە ناو خانەکە.</p>
+      <ul>
+        <li><b>سیستەمی هێڵی:</b> بە ڕێگەی Gauss–Jordan چارەسەر دەکرێت. هەموو کرداری ڕیزەکان (R₂ ← R₂ − 2·R₁ ...) لەگەڵ ماتریکسەکە نیشان دەدرێت. ئەگەر چارەسەر نەبوو یان بێ‌کۆتا بوو، ڕوون دەنووسێت.</li>
+        <li><b>هاوکێشەی یەک گۆڕاو:</b> هەنگاو بە هەنگاو چارەسەر دەکرێت.</li>
+        <li><b>سیستەمی نا‌هێڵی:</b> بە شێوازی ژمارەیی (Newton) چارەسەر دەکرێت و ئەنجامەکان «نزیکەیی» دەنیشاندرێن.</li>
+        <li><b>پشکنین:</b> ئەنجامەکان دەگەڕێنرێنەوە ناو هاوکێشەکان بۆ دڵنیابوون لە دروستییان.</li>
+      </ul>
+    </details>
+
+    <details class="hs"><summary>Settings — ڕێکخستن</summary>
+      <ul>
+        <li><b>Appearance:</b> ڕەنگی ئامادەکراو (Dark، Light، Ocean، Purple، Forest، Sunset) هەڵبژێرە، یان ڕەنگەکان خۆت بگۆڕە: Accent، Background، Panels، Top bar، Text، و ڕەنگی پشتی گراف.</li>
+        <li><b>2D grapher:</b> ماوەی X و Y بنووسە و <i>Apply</i> بکە، یان لە ماوە خێراکان هەڵبژێرە. <i>Equal scale</i> پێوانەی X و Y یەکسان دەکات.</li>
+        <li><b>3D grapher:</b> ماوەی ±R و ژمارەی خانەکانی تۆڕ (N). N زیاتر = وردتر بەڵام هێواشتر.</li>
+        <li><b>Calculator:</b> بەکارهێنانی کیبۆردی ئامێر، و پاککردنەوەی مێژوو.</li>
+        <li>هەموو ڕێکخستنەکان خۆکار پاشەکەوت دەکرێن.</li>
+      </ul>
+    </details>
+
+    <details class="hs"><summary>چارەسەری کێشەکان</summary>
+      <ul>
+        <li><b>کیبۆردی ئامێر دەرناکەوێت:</b> دوگمەی <code>Aa</code> لە ژمێرەر دابگرە یان لە Settings چالاکی بکە.</li>
+        <li><b>گرافەکە نادیارە:</b> دوگمەی <code>⟲</code> بکە یان لە Settings ماوەکە بگۆڕە. ئەگەر ماوەکە زۆر بچووک یان گەورە بێت گرافەکە دەرناکەوێت.</li>
+        <li><b>گۆشەکان:</b> ئەگەر sin(90) ئەنجامی ١ نادات، لە Settings دۆخی گۆشە لە Radians بۆ Degrees بگۆڕە.</li>
+        <li><b>ئامرازەکانی گراف:</b> تەنها بۆ گرافی y(x)ـی ڕوون کار دەکەن، نەک هاوکێشە ئاماژەکراوەکان.</li>
+        <li><b>هەڵە لە ئەنجامدا:</b> ئەپەکە ئەنجامی نادروست دانانێت؛ ئەگەر کرداری پشتگیری‌نەکراو بێت، هەڵەی ڕوون نیشان دەدات.</li>
+        <li><b>هەموو شتێک لەناو چوو:</b> لە Settings، <i>Reset everything</i> ئەپەکە دەگەڕێنێتەوە بۆ سەرەتا.</li>
+      </ul>
+    </details>
+  </div></div>
+
+  <div class="scr" id="scr-about"><div class="aboutbox">
+    <div class="acard">
+      <div class="atitle">گەشەپێدەر</div>
+      <div class="arow"><img class="av" src="assets/dev.jpg" alt="Safen Sartip Ismail"><div class="ainfo"><h3 dir="ltr">Safen Sartip Ismail</h3><p dir="ltr">Sung Jin Woo</p><a class="tg" href="https://t.me/safenyorochi" target="_blank" rel="noopener">@safenyorochi</a></div></div>
+    </div>
+    <div class="acard">
+      <div class="atitle">کەناڵی تێلێگرام</div>
+      <div class="arow"><img class="av" src="assets/channel.jpg" alt="App World"><div class="ainfo"><h3 dir="ltr">App World</h3><p dir="ltr">All Apps in One World!</p><a class="tg" href="https://t.me/App5world" target="_blank" rel="noopener">@App5world</a></div></div>
+      <div class="chips"><a href="https://t.me/App5world" target="_blank" rel="noopener">ئەپەکان</a><a href="https://t.me/App5world" target="_blank" rel="noopener">پڕۆژەی وێبسایت</a><a href="https://t.me/App5world" target="_blank" rel="noopener">تەکنەلۆژیا و ئامرازەکان</a><a href="https://t.me/App5world" target="_blank" rel="noopener">تێبینی و ڕێنمایی</a><a href="https://t.me/App5world" target="_blank" rel="noopener">فێربوون</a></div>
+    </div>
+    <div class="acard">
+      <div class="atitle">دەربارەی ئەپەکە</div>
+      <p><b>Math Grapher</b> — ژمێرەری زانستی، گرافی ٢ و ٣ ڕەهەند، و چارەسەرکەری هاوکێشەکان لە یەک ئەپدا.</p>
+      <ul class="alist"><li>بزوێنەری ماتماتیکی هاوبەش بۆ هەموو بەشەکان، بەبێ <code dir="ltr">eval()</code></li><li>ئەنجامەکان وەک «وردە» یان «نزیکەیی» نیشان دەدرێن</li><li>بێ ئینتەرنێت کار دەکات و دەکرێت لەسەر شاشەی مۆبایل دابمەزرێت (PWA)</li><li>بێ هەژمار و بێ خەرجی</li></ul>
+      <p class="muted small" dir="ltr">Version 1.1</p>
+    </div>
+  </div></div>
+</div>
+
+<script src="engine.js"></script>
+<script src="gg.js"></script>
+<script src="grapher.js"></script>
+<script src="grapher3d.js"></script>
+<script src="solver.js"></script>
+<script src="calc.js"></script>
+<script src="annot.js"></script>
+<script src="theme.js"></script>
+<script src="fx.js"></script>
+<script src="i18n.js"></script>
+<script src="home.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
